@@ -1,0 +1,9 @@
+C:\Balta\Back-End\CTB\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+C:\Balta\Back-End\CTB\Domain\bin\Debug\netstandard2.0\Domain.dll
+C:\Balta\Back-End\CTB\Domain\bin\Debug\netstandard2.0\Domain.pdb
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.dll
+C:\Balta\Back-End\CTB\Domain\obj\Debug\netstandard2.0\Domain.pdb

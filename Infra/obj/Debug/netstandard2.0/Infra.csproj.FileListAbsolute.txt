@@ -1,0 +1,12 @@
+C:\Balta\Back-End\CTB\Infra\bin\Debug\netstandard2.0\Infra.deps.json
+C:\Balta\Back-End\CTB\Infra\bin\Debug\netstandard2.0\Infra.dll
+C:\Balta\Back-End\CTB\Infra\bin\Debug\netstandard2.0\Infra.pdb
+C:\Balta\Back-End\CTB\Infra\bin\Debug\netstandard2.0\Domain.dll
+C:\Balta\Back-End\CTB\Infra\bin\Debug\netstandard2.0\Domain.pdb
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.csprojAssemblyReference.cache
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.AssemblyInfoInputs.cache
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.AssemblyInfo.cs
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.csproj.CoreCompileInputs.cache
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.csproj.CopyComplete
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.dll
+C:\Balta\Back-End\CTB\Infra\obj\Debug\netstandard2.0\Infra.pdb
