@@ -68,7 +68,11 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.0.0-rc4, )"
+              "version": "[5.4.1, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[5.4.1, )"
             }
           },
           "imports": [
