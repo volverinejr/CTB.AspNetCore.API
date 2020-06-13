@@ -36,9 +36,7 @@ namespace Domain.Modulos.Infracao.Grupo
             {
                 _repository.Insert(model);
 
-                GrupoResult result = new GrupoResult(model.Id, model.Nome);
-
-                return new GenericResult(201, "Recurso Inserido(a)", result);
+                return new GenericResult(201, "Recurso Inserido(a)", model);
             }
             catch (System.Exception ex)
             {
@@ -66,11 +64,9 @@ namespace Domain.Modulos.Infracao.Grupo
 
             try
             {
-                GrupoResult result = new GrupoResult(model.Id, model.Nome);
-
                 _repository.Update(model);
 
-                return new GenericResult(200, "Recurso Atualizado(a)", result);
+                return new GenericResult(200, "Recurso Atualizado(a)", model);
             }
             catch (System.Exception ex)
             {
@@ -107,12 +103,12 @@ namespace Domain.Modulos.Infracao.Grupo
         }
 
 
-        public IEnumerable<GrupoResult> GetAll(Pesquisa pesquisa)
+        public IEnumerable<GrupoModel> GetAll(Pesquisa pesquisa)
         {
             return _repository.GetAll(pesquisa);
         }
 
-        public GrupoResult GetById(int id, string usuario)
+        public GrupoModel GetById(int id, string usuario)
         {
             return _repository.GetById(id, usuario);
         }

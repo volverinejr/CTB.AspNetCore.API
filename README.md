@@ -9,6 +9,7 @@ Laboratório de estudo abordando:
 - Entity Framework
 - Paginação
 - Teste Unitário
+- Swagger
 
 
 Models com CRUD:

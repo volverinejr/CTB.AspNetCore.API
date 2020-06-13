@@ -78,7 +78,7 @@ namespace Api
 
             services.AddSwaggerGen(
                 c => {
-                    c.SwaggerDoc("v1", new OpenApiInfo { Title="Documentando a API", Version = "v1" } );
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title="API sobre o CTB.", Version = "v1" } );
                 }
             );
         }
@@ -97,7 +97,7 @@ namespace Api
             app.UseSwagger();
             app.UseSwaggerUI(
                 c => {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Documentacao API V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CTB V1");
                 }
             );
 

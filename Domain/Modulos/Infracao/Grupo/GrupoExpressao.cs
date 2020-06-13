@@ -5,7 +5,7 @@ namespace Domain.Modulos.Infracao.Grupo
 {
     public static class GrupoExpressao
     {
-        public static Expression<Func<GrupoResult, bool>> SetWhere(string campo, string valor)
+        public static Expression<Func<GrupoModel, bool>> SetWhere(string campo, string valor)
         {
             switch (campo.ToUpper())
             {

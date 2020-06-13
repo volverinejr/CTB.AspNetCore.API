@@ -9,8 +9,8 @@ namespace Domain.Modulos.Infracao.Natureza
         void Update(NaturezaModel naturezaModel);
         void Delete(NaturezaModel naturezaModel);
         NaturezaModel GetById(int id);
-        NaturezaResult GetById(int id, string usuario);
-        IEnumerable<NaturezaResult> GetAll(Pesquisa pesquisa);
+        NaturezaModel GetById(int id, string usuario);
+        IEnumerable<NaturezaModel> GetAll(Pesquisa pesquisa);
         int GetTotalDeRegistros();
     }
 }

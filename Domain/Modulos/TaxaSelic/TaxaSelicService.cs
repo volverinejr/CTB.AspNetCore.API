@@ -40,9 +40,7 @@ namespace Domain.Modulos.TaxaSelic
             {
                 _repository.Insert(model);
 
-                TaxaSelicResult result = new TaxaSelicResult(model.Id, model.Ano, model.Mes, model.Valor);
-
-                return new GenericResult(201, "Recurso Inserido(a)", result);
+                return new GenericResult(201, "Recurso Inserido(a)", model);
             }
             catch (System.Exception ex)
             {
@@ -70,11 +68,9 @@ namespace Domain.Modulos.TaxaSelic
 
             try
             {
-                TaxaSelicResult result = new TaxaSelicResult(model.Id, model.Ano, model.Mes, model.Valor);
-
                 _repository.Update(model);
 
-                return new GenericResult(200, "Recurso Atualizado(a)", result);
+                return new GenericResult(200, "Recurso Atualizado(a)", model);
             }
             catch (System.Exception ex)
             {
@@ -111,12 +107,12 @@ namespace Domain.Modulos.TaxaSelic
         }
 
 
-        public IEnumerable<TaxaSelicResult> GetAll(Pesquisa pesquisa)
+        public IEnumerable<TaxaSelicModel> GetAll(Pesquisa pesquisa)
         {
             return _repository.GetAll(pesquisa);
         }
 
-        public TaxaSelicResult GetById(int id, string usuario)
+        public TaxaSelicModel GetById(int id, string usuario)
         {
             return _repository.GetById(id, usuario);
         }

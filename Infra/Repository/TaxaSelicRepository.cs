@@ -49,17 +49,16 @@ namespace Infra.Repository
         }
 
 
-        public TaxaSelicResult GetById(int id, string usuario)
+        public TaxaSelicModel GetById(int id, string usuario)
         {
-            return (TaxaSelicResult)_context.TaxaSelic
-                        .Select(col => new TaxaSelicResult(col.Id, col.Ano, col.Mes, col.Valor))
+            return (TaxaSelicModel)_context.TaxaSelic
                         .AsNoTracking()
                         .Where(x => x.Id == id)
                         .FirstOrDefault();
         }
 
 
-        public IEnumerable<TaxaSelicResult> GetAll(Pesquisa pesquisa)
+        public IEnumerable<TaxaSelicModel> GetAll(Pesquisa pesquisa)
         {
             string[] camposPesquisa = { "Id", "Ano" };
 
@@ -69,8 +68,7 @@ namespace Infra.Repository
             }
 
 
-            return (IEnumerable<TaxaSelicResult>)_context.TaxaSelic
-                                    .Select(col => new TaxaSelicResult(col.Id, col.Ano, col.Mes, col.Valor))
+            return (IEnumerable<TaxaSelicModel>)_context.TaxaSelic
                                     .Where(TaxaSelicExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
                                     .AsNoTracking()
                                     .Skip((pesquisa.Qtd * pesquisa.Pagina))

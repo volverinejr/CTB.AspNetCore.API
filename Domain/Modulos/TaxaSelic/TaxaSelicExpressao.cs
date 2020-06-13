@@ -6,7 +6,7 @@ namespace Domain.Modulos.TaxaSelic
     public static class TaxaSelicExpressao
     {
 
-        public static Expression<Func<TaxaSelicResult, bool>> SetWhere(string campo, string valor)
+        public static Expression<Func<TaxaSelicModel, bool>> SetWhere(string campo, string valor)
         {
             switch (campo.ToUpper())
             {

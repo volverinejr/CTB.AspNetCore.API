@@ -48,17 +48,16 @@ namespace Infracao
         }
 
 
-        public NaturezaResult GetById(int id, string usuario)
+        public NaturezaModel GetById(int id, string usuario)
         {
-            return (NaturezaResult)_context.InfracaoNatureza
-                        .Select(col => new NaturezaResult(col.Id, col.Nome, col.Ponto, col.Valor, col.PercentualDeDesconto))
+            return (NaturezaModel)_context.InfracaoNatureza
                         .AsNoTracking()
                         .Where(x => x.Id == id)
                         .FirstOrDefault();
         }
 
 
-        public IEnumerable<NaturezaResult> GetAll(Pesquisa pesquisa)
+        public IEnumerable<NaturezaModel> GetAll(Pesquisa pesquisa)
         {
             string[] camposPesquisa = { "Id", "Nome", "Valor" };
 
@@ -69,8 +68,7 @@ namespace Infracao
                 pesquisa.Campo = "Id";
             }
 
-            return (IEnumerable<NaturezaResult>)_context.InfracaoNatureza
-                        .Select(col => new NaturezaResult(col.Id, col.Nome, col.Ponto, col.Valor, col.PercentualDeDesconto))
+            return (IEnumerable<NaturezaModel>)_context.InfracaoNatureza
                                     .Where(NaturezaExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
                                     .AsNoTracking()
                                     .Skip((pesquisa.Qtd * pesquisa.Pagina))

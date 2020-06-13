@@ -5,7 +5,7 @@ namespace Domain.Modulos.Infracao.Natureza
 {
     public static class NaturezaExpressao
     {
-        public static Expression<Func<NaturezaResult, bool>> SetWhere(string campo, string valor)
+        public static Expression<Func<NaturezaModel, bool>> SetWhere(string campo, string valor)
         {
             switch (campo.ToUpper())
             {

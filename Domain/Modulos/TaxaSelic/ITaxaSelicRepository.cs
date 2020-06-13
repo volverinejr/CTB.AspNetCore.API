@@ -9,8 +9,8 @@ namespace Domain.Modulos.TaxaSelic
         void Update(TaxaSelicModel taxaSelicModel);
         void Delete(TaxaSelicModel taxaSelicModel);
         TaxaSelicModel GetById(int id);
-        TaxaSelicResult GetById(int id, string usuario);
-        IEnumerable<TaxaSelicResult> GetAll(Pesquisa pesquisa);
+        TaxaSelicModel GetById(int id, string usuario);
+        IEnumerable<TaxaSelicModel> GetAll(Pesquisa pesquisa);
         int GetTotalDeRegistros();
         TaxaSelicModel GetByAnoeMes(int ano, int mes);
     }

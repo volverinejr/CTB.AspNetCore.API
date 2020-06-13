@@ -48,17 +48,16 @@ namespace Infracao
         }
 
 
-        public GrupoResult GetById(int id, string usuario)
+        public GrupoModel GetById(int id, string usuario)
         {
-            return (GrupoResult)_context.InfracaoGrupo
-                        .Select(col => new GrupoResult(col.Id, col.Nome))
+            return (GrupoModel)_context.InfracaoGrupo
                         .AsNoTracking()
                         .Where(x => x.Id == id)
                         .FirstOrDefault();
         }
 
 
-        public IEnumerable<GrupoResult> GetAll(Pesquisa pesquisa)
+        public IEnumerable<GrupoModel> GetAll(Pesquisa pesquisa)
         {
             string[] camposPesquisa = { "Id", "Nome" };
 
@@ -67,8 +66,7 @@ namespace Infracao
                 pesquisa.Campo = "Id";
             }
 
-            return (IEnumerable<GrupoResult>)_context.InfracaoGrupo
-                        .Select(col => new GrupoResult(col.Id, col.Nome))
+            return (IEnumerable<GrupoModel>)_context.InfracaoGrupo
                                     .Where(GrupoExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
                                     .AsNoTracking()
                                     .Skip((pesquisa.Qtd * pesquisa.Pagina))

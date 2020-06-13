@@ -45,7 +45,7 @@ namespace Api.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int:min(1)}")]
         public IActionResult Delete(
             int id,
             [FromServices] TaxaSelicService service,
@@ -65,42 +65,42 @@ namespace Api.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public TaxaSelicResult GetByIdExterno(
+        [HttpGet("{id:int:min(1)}")]
+        public TaxaSelicModel GetByIdExterno(
             int id,
             [FromServices] TaxaSelicService service,
             [FromServices] IMemoryCache cache
         )
         {
-            TaxaSelicResult taxaSelicResult;
+            TaxaSelicModel taxaSelicModel;
 
-            if (!cache.TryGetValue(id, out taxaSelicResult))
+            if (!cache.TryGetValue(id, out taxaSelicModel))
             {
-                taxaSelicResult = service.GetById(id, "");
+                taxaSelicModel = service.GetById(id, "");
 
-                if (taxaSelicResult != null)
+                if (taxaSelicModel != null)
                 {
                     var opcoesDoCache = new MemoryCacheEntryOptions()
                     {
                         AbsoluteExpiration = DateTime.Now.AddMinutes(CACHEEMMINUTOS)
                     };
-                    cache.Set(id, taxaSelicResult, opcoesDoCache);
+                    cache.Set(id, taxaSelicModel, opcoesDoCache);
                 }
             }
 
-            return taxaSelicResult;
+            return taxaSelicModel;
         }
 
 
-        [HttpGet("{pagina}/{qtd}/{campo}/{ordem}/{filtro}")]
-        [Route("pesquisa")]
-        public IEnumerable<TaxaSelicResult> GetAll(
-            [FromQuery] short pagina,
-            [FromQuery] short qtd,
-            [FromQuery] string campo,
-            [FromQuery] short ordem,
-            [FromQuery] string filtro,
-            [FromServices] TaxaSelicService service
+        [HttpGet]
+        [Route("pesquisa/{pagina:int:min(0)}/{qtd:int:max(500)}/{campo:alpha}/{ordem:int:range(-1, 1)}/{filtro?}")]
+        public IEnumerable<TaxaSelicModel> GetAll(
+            short pagina,
+            short qtd,
+            string campo,
+            short ordem,
+            [FromServices] TaxaSelicService service,
+            string filtro = ""
         )
         {
             Pesquisa pesquisa = new Pesquisa(pagina, qtd, campo, ordem, filtro);

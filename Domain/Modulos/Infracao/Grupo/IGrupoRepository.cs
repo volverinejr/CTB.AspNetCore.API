@@ -9,8 +9,8 @@ namespace Domain.Modulos.Infracao.Grupo
         void Update(GrupoModel grupoModel);
         void Delete(GrupoModel grupoModel);
         GrupoModel GetById(int id);
-        GrupoResult GetById(int id, string usuario);
-        IEnumerable<GrupoResult> GetAll(Pesquisa pesquisa);
+        GrupoModel GetById(int id, string usuario);
+        IEnumerable<GrupoModel> GetAll(Pesquisa pesquisa);
         int GetTotalDeRegistros();
     }
 }
