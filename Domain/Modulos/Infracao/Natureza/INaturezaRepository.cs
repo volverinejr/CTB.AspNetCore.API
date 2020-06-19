@@ -11,6 +11,6 @@ namespace Domain.Modulos.Infracao.Natureza
         NaturezaModel GetById(int id);
         NaturezaModel GetById(int id, string usuario);
         IEnumerable<NaturezaModel> GetAll(Pesquisa pesquisa);
-        int GetTotalDeRegistros();
+        int GetTotalDeRegistros(Pesquisa pesquisa);
     }
 }

@@ -11,7 +11,7 @@ namespace Domain.Modulos.TaxaSelic
         TaxaSelicModel GetById(int id);
         TaxaSelicModel GetById(int id, string usuario);
         IEnumerable<TaxaSelicModel> GetAll(Pesquisa pesquisa);
-        int GetTotalDeRegistros();
+        int GetTotalDeRegistros(Pesquisa pesquisa);
         TaxaSelicModel GetByAnoeMes(int ano, int mes);
     }
 }

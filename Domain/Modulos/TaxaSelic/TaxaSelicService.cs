@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Domain.Modulos.TaxaSelic.Command;
 using Domain.Shared.Contratos;
@@ -21,26 +22,25 @@ namespace Domain.Modulos.TaxaSelic
 
         public GenericResult Exec(TaxaSelicInsertCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new GenericResult(400, "Recurso Inválido(a)", command.Notifications);
-            }
-
             TaxaSelicModel model = _repository.GetByAnoeMes(command.Ano, command.Mes);
             if (model != null)
             {
-                return new GenericResult(409, "Recurso já existente", model);
+                command.AddNotification("TaxaSelicModel", "Recurso já existente Id: " + model.Id);
             }
 
-            model = new TaxaSelicModel(command.Ano, command.Mes, command.Valor);
+            command.Validate();
+            if (command.Invalid)
+            {
+                return new GenericResult(400, "Recurso Inválido", command.Notifications);
+            }
 
+
+            model = new TaxaSelicModel(command.Ano, command.Mes, command.Valor);
             try
             {
                 _repository.Insert(model);
 
-                return new GenericResult(201, "Recurso Inserido(a)", model);
+                return new GenericResult(201, "Recurso Inserido", model);
             }
             catch (System.Exception ex)
             {
@@ -50,19 +50,26 @@ namespace Domain.Modulos.TaxaSelic
 
         public GenericResult Exec(TaxaSelicUpdateCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
+            TaxaSelicModel model = _repository.GetByAnoeMes(command.Ano, command.Mes);
+            if ( (model != null) && ( model.Id != command.Id ) )
             {
-                return new GenericResult(400, "Recurso Inválido(a)", command.Notifications);
+                command.AddNotification("TaxaSelicModel", "Recurso já existente Id: " + model.Id);
             }
 
-            TaxaSelicModel model = _repository.GetById(command.Id);
 
+            model = _repository.GetById(command.Id);
             if (model == null)
             {
-                return new GenericResult(404, "Recurso Inexistente", null);
+                command.AddNotification("Id", "Recurso Inexistente");
             }
+
+
+            command.Validate();
+            if (command.Invalid)
+            {
+                return new GenericResult(400, "Recurso Inválido", command.Notifications);
+            }
+
 
             model.Atualizar(command.Ano, command.Mes, command.Valor);
 
@@ -70,7 +77,7 @@ namespace Domain.Modulos.TaxaSelic
             {
                 _repository.Update(model);
 
-                return new GenericResult(200, "Recurso Atualizado(a)", model);
+                return new GenericResult(200, "Recurso Atualizado", model);
             }
             catch (System.Exception ex)
             {
@@ -80,25 +87,25 @@ namespace Domain.Modulos.TaxaSelic
 
         public GenericResult Exec(TaxaSelicDeleteCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new GenericResult(400, "Recurso Inválido(a)", command.Notifications);
-            }
-
             TaxaSelicModel model = _repository.GetById(command.Id);
-
             if (model == null)
             {
-                return new GenericResult(404, "Recurso Inexistente", null);
+                command.AddNotification("Id", "Recurso Inexistente");
             }
+
+
+            command.Validate();
+            if (command.Invalid)
+            {
+                return new GenericResult(400, "Recurso Inválido", command.Notifications);
+            }
+
 
             try
             {
                 _repository.Delete(model);
 
-                return new GenericResult(204, "Recurso Removido(a)", null);
+                return new GenericResult(200, "Recurso Removido", null);
             }
             catch (System.Exception ex)
             {
@@ -117,9 +124,9 @@ namespace Domain.Modulos.TaxaSelic
             return _repository.GetById(id, usuario);
         }
 
-        public int GetTotalDeRegistros()
+        public int GetTotalDeRegistros(Pesquisa pesquisa)
         {
-            return _repository.GetTotalDeRegistros();
+            return _repository.GetTotalDeRegistros(pesquisa);
         }
 
     }

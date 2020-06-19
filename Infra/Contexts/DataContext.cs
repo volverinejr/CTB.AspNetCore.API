@@ -15,7 +15,6 @@ namespace Infra.Contexts
         }
 
         public DbSet<TaxaSelicModel> TaxaSelic { get; set; }
-
         public DbSet<NaturezaModel> InfracaoNatureza { get; set; }
         public DbSet<GrupoModel> InfracaoGrupo { get; set; }
         public DbSet<InfracaoModel> Infracao { get; set; }

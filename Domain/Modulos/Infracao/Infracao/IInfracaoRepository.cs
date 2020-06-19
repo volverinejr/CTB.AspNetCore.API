@@ -16,6 +16,6 @@ namespace Domain.Modulos.Infracao.Infracao
         IEnumerable<InfracaoModel> GetAll(Pesquisa pesquisa);
         InfracaoModel GetByCodigoValidadeInicioMenor(int id, string codigo, DateTime validadeInicio);
         InfracaoModel GetByCodigoValidadeInicioMaior(int id, string codigo, DateTime validadeInicio);
-        int GetTotalDeRegistros();
+        int GetTotalDeRegistros(Pesquisa pesquisa);
     }
 }

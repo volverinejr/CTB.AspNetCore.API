@@ -74,20 +74,27 @@ namespace Infracao
             return (IEnumerable<InfracaoModel>)_context.Infracao
                                     .Include(g => g.Grupo)
                                     .Include(n => n.Natureza)
-                                    //.Select(col => new InfracaoResult(col.Id, col.Codigo, col.Descricao, col.AmparoLegal, col.MedidaAdm, col.Crime, col.ObsObrigatoria, col.GrupoId, col.NaturezaId))
                                     .Where(InfracaoExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
                                     .AsNoTracking()
                                     .Skip((pesquisa.Qtd * pesquisa.Pagina))
                                     .Take(pesquisa.Qtd)
                                     .OrderByDynamic(pesquisa.Campo, pesquisa.Ordem)
                                     .ToList();
-
         }
 
 
-        public int GetTotalDeRegistros()
+        public int GetTotalDeRegistros(Pesquisa pesquisa)
         {
-            return _context.Infracao.Count();
+            string[] camposPesquisa = { "Id", "Codigo", "Descricao", "AmparoLegal", "GrupoId", "NaturezaId" };
+
+            if (Array.IndexOf(camposPesquisa, pesquisa.Campo) == -1)
+            {
+                pesquisa.Campo = "Id";
+            }
+
+            return _context.Infracao
+                                    .Where(InfracaoExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
+                                    .Count();
         }
 
         public IEnumerable<InfracaoModel> GetByCodigo(string codigo)

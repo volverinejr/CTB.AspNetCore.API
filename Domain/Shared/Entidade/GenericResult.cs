@@ -10,7 +10,6 @@ namespace Domain.Shared.Entidade
         public object Data { get; set; }
 
 
-
         public GenericResult()
         {
         }

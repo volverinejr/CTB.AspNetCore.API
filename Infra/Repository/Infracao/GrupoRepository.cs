@@ -73,13 +73,21 @@ namespace Infracao
                                     .Take(pesquisa.Qtd)
                                     .OrderByDynamic(pesquisa.Campo, pesquisa.Ordem)
                                     .ToList();
-
         }
 
 
-        public int GetTotalDeRegistros()
+        public int GetTotalDeRegistros(Pesquisa pesquisa)
         {
-            return _context.InfracaoGrupo.Count();
+            string[] camposPesquisa = { "Id", "Nome" };
+
+            if (Array.IndexOf(camposPesquisa, pesquisa.Campo) == -1)
+            {
+                pesquisa.Campo = "Id";
+            }
+
+            return _context.InfracaoGrupo
+                                    .Where(GrupoExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
+                                    .Count();
         }
     }
 }

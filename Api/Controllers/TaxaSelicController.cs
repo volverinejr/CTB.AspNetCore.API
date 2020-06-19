@@ -94,7 +94,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("pesquisa/{pagina:int:min(0)}/{qtd:int:max(500)}/{campo:alpha}/{ordem:int:range(-1, 1)}/{filtro?}")]
-        public IEnumerable<TaxaSelicModel> GetAll(
+        public GenericPesquisa GetAll(
             short pagina,
             short qtd,
             string campo,
@@ -105,17 +105,12 @@ namespace Api.Controllers
         {
             Pesquisa pesquisa = new Pesquisa(pagina, qtd, campo, ordem, filtro);
 
-            return service.GetAll(pesquisa);
-        }
+            GenericPesquisa result = new GenericPesquisa(
+                service.GetAll(pesquisa),
+                service.GetTotalDeRegistros(pesquisa)
+            );
 
-
-        [HttpGet]
-        [Route("totalderegistros")]
-        public int GetTotalRegistros(
-            [FromServices] TaxaSelicService service
-        )
-        {
-            return service.GetTotalDeRegistros();
+            return result;
         }
 
     }

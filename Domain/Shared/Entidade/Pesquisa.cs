@@ -38,7 +38,7 @@ namespace Domain.Shared.Entidade
 
             Pagina = pagina;
             Qtd = qtd;
-            Campo = campo;
+            Campo = campo[0].ToString().ToUpper() + campo.Substring(1);
             Ordem = ordem;
             Filtro = filtro;
         }

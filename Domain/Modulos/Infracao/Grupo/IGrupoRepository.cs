@@ -11,6 +11,6 @@ namespace Domain.Modulos.Infracao.Grupo
         GrupoModel GetById(int id);
         GrupoModel GetById(int id, string usuario);
         IEnumerable<GrupoModel> GetAll(Pesquisa pesquisa);
-        int GetTotalDeRegistros();
+        int GetTotalDeRegistros(Pesquisa pesquisa);
     }
 }

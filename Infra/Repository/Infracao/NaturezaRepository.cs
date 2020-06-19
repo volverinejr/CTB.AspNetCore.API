@@ -79,9 +79,18 @@ namespace Infracao
         }
 
 
-        public int GetTotalDeRegistros()
+        public int GetTotalDeRegistros(Pesquisa pesquisa)
         {
-            return _context.InfracaoNatureza.Count();
+            string[] camposPesquisa = { "Id", "Nome", "Valor" };
+
+            if (Array.IndexOf(camposPesquisa, pesquisa.Campo) == -1)
+            {
+                pesquisa.Campo = "Id";
+            }
+
+            return _context.InfracaoNatureza
+                                    .Where(NaturezaExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
+                                    .Count();
         }
 
     }

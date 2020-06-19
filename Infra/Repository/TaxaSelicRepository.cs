@@ -79,9 +79,18 @@ namespace Infra.Repository
 
         }
 
-        public int GetTotalDeRegistros()
+        public int GetTotalDeRegistros(Pesquisa pesquisa)
         {
-            return _context.TaxaSelic.Count();
+            string[] camposPesquisa = { "Id", "Ano" };
+
+            if (Array.IndexOf(camposPesquisa, pesquisa.Campo) == -1)
+            {
+                pesquisa.Campo = "Id";
+            }
+
+            return _context.TaxaSelic
+                                    .Where(TaxaSelicExpressao.SetWhere(pesquisa.Campo, pesquisa.Filtro))
+                                    .Count();
         }
 
         public TaxaSelicModel GetByAnoeMes(int ano, int mes)
